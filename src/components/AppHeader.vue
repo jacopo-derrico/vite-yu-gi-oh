@@ -19,7 +19,7 @@ export default {
 
 <style lang="scss" scoped>
 header {
-    background-color: rgba(255, 255, 255, 0.162);
+    background-color: rgba(255, 255, 255, 0.16);
     padding-block: 20px;
 
     figure {

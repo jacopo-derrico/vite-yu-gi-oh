@@ -8,12 +8,28 @@ import axios from 'axios';
 export default {
     components: {
         AppHeader,
+        AppCards
     },
     data() {
         return {
             store,
         }
-    }
+    },
+    methods: {
+        getCards() {
+            axios
+                .get(store.apiURL)
+                .then(res => {
+                    console.log(res.data)
+
+                    store.cardList = res.data.data
+                    console.log(store.cardList)
+                })
+        }
+    },
+    mounted() {
+        this.getCards()
+    },
 }
 </script>
 

@@ -21,4 +21,20 @@ export default {
 </template>
 
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+div {
+    background-color: #121212;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+
+    figure {
+        margin-bottom: 15px;
+    }
+
+    h4 {
+        margin-bottom: 15px;
+    }
+
+}
+</style>
