@@ -22,7 +22,7 @@ export default {
             <div class="flex align-center">
                 <select name="card-type" id="card-type">
                     <option value="">All type</option>
-                    <option value="alien">Alien</option>
+                    <option v-for="(element, index) in store.cardType" :value="element.archetype_name">{{element.archetype_name}}</option>
 
                 </select>
             </div>

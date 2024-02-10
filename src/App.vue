@@ -18,6 +18,13 @@ export default {
     methods: {
         getCards() {
             store.loading = true;
+            axios
+                .get(store.apiURLType)
+                .then(res => {
+                    console.log(res.data)
+                    store.cardType = res.data
+                    console.log(store.cardType)
+                })
             setTimeout(() => {
                 axios
                     .get(store.apiURL)
