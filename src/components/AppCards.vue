@@ -17,7 +17,7 @@ export default {
 
 
 <template>
-    <main>
+    <main id="allCards">
         <div id="cards-search" class="col-10 flex justify-between m-center">
             <div class="flex align-center">
                 <select name="card-type" id="card-type">
@@ -32,7 +32,10 @@ export default {
         </div>
         <AppLoader v-if="(store.loading)" />
         <div v-else id="cards" class="col-10 flex flex-wrap m-center">
-            <AppSingleCard class="card" v-for="(element, index) in store.cardList" :key="index"
+            <!-- <AppSingleCard class="card" v-for="(element, index) in store.cardList" :key="index"
+                :propsImg="store.cardList[index].card_images[0].image_url" :propsName="store.cardList[index].name"
+                :propsType="store.cardList[index].archetype" /> -->
+                <AppSingleCard class="card" v-for="(element, index) in store.cardList.slice(0, store.cardToShow)" :key="index"
                 :propsImg="store.cardList[index].card_images[0].image_url" :propsName="store.cardList[index].name"
                 :propsType="store.cardList[index].archetype" />
         </div>

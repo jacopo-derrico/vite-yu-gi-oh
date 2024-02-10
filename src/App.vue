@@ -26,10 +26,18 @@ export default {
                         store.loading = false
                     })
             }, 3000);
+        },
+        checkBottomScroll() {
+            let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight;
+            if (bottomOfWindow) {
+                store.cardToShow += 42;
+            }
         }
     },
     mounted() {
         this.getCards()
+
+        window.addEventListener('scroll', this.checkBottomScroll);
     },
 }
 </script>
