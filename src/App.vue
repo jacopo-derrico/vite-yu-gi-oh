@@ -17,14 +17,15 @@ export default {
     },
     methods: {
         getCards() {
-            axios
-                .get(store.apiURL)
-                .then(res => {
-                    console.log(res.data)
-
-                    store.cardList = res.data.data
-                    console.log(store.cardList)
-                })
+            store.loading = true;
+            setTimeout(() => {
+                axios
+                    .get(store.apiURL)
+                    .then(res => {
+                        store.cardList = res.data.data
+                        store.loading = false
+                    })
+            }, 3000);
         }
     },
     mounted() {

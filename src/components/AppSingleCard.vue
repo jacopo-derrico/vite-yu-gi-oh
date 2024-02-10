@@ -27,14 +27,27 @@ div {
     color: white;
     padding: 10px;
     border-radius: 10px;
-
+    position: relative;
     figure {
         margin-bottom: 15px;
+        z-index: 2;
     }
-
     h4 {
         margin-bottom: 15px;
+        z-index: 2;
     }
-
+    h6 {
+        z-index: 2;
+    }
+    &:before {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        border-radius: 10px;
+        background-color: rgba(255, 255, 255, 0.2);
+    }
 }
 </style>
