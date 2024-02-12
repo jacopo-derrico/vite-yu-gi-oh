@@ -6,6 +6,7 @@ export const store = reactive({
     cardList: [],
     cardToShow: 42,
     cardType: [],
+    selectedType: 'All type',
     apiURL: 'https://db.ygoprodeck.com/api/v7/cardinfo.php',
     apiURLType: 'https://db.ygoprodeck.com/api/v7/archetypes.php'
 })

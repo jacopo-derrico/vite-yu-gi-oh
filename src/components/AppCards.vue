@@ -11,7 +11,23 @@ export default {
             store
         };
     },
-    components: { AppSingleCard, AppLoader }
+    components: { AppSingleCard, AppLoader },
+    computed: {
+        filteredCardsLength() {
+            return this.filteredCards.length;
+        },
+        filteredCards() {
+            if (this.store.selectedType === 'All type') {
+                return this.store.cardList;
+            } else if (this.store.selectedType === 'No type') {
+                return this.store.cardList
+                    .filter(card => card.archetype === undefined);
+            } else {
+                return this.store.cardList
+                    .filter(card => card.archetype === this.store.selectedType);
+            }
+        }
+    }
 }
 </script>
 
@@ -20,24 +36,21 @@ export default {
     <main id="allCards">
         <div id="cards-search" class="col-10 flex justify-between m-center">
             <div class="flex align-center">
-                <select name="card-type" id="card-type">
-                    <option value="">All type</option>
-                    <option v-for="(element, index) in store.cardType" :value="element.archetype_name">{{element.archetype_name}}</option>
-
+                <select v-model="store.selectedType">
+                    <option value="All type" selected>All type</option>
+                    <option value="No type" selected>No type</option>
+                    <option v-for="(element, index) in store.cardType" :value="element.archetype_name">
+                        {{ element.archetype_name }}</option>
                 </select>
             </div>
             <div class="flex align-center">
-                <h6>{{ store.cardList.length }} cards found</h6>
+                <h6>{{ this.filteredCardsLength }} cards found</h6>
             </div>
         </div>
         <AppLoader v-if="(store.loading)" />
         <div v-else id="cards" class="col-10 flex flex-wrap m-center">
-            <!-- <AppSingleCard class="card" v-for="(element, index) in store.cardList" :key="index"
-                :propsImg="store.cardList[index].card_images[0].image_url" :propsName="store.cardList[index].name"
-                :propsType="store.cardList[index].archetype" /> -->
-                <AppSingleCard class="card" v-for="(element, index) in store.cardList.slice(0, store.cardToShow)" :key="index"
-                :propsImg="store.cardList[index].card_images[0].image_url" :propsName="store.cardList[index].name"
-                :propsType="store.cardList[index].archetype" />
+            <AppSingleCard class="card" v-for="(element, index) in filteredCards.slice(0, store.cardToShow)" :key="index"
+                :propsImg="element.card_images[0].image_url" :propsName="element.name" :propsType="element.archetype" />
         </div>
     </main>
 </template>

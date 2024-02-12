@@ -21,9 +21,7 @@ export default {
             axios
                 .get(store.apiURLType)
                 .then(res => {
-                    console.log(res.data)
                     store.cardType = res.data
-                    console.log(store.cardType)
                 })
             setTimeout(() => {
                 axios
@@ -45,7 +43,7 @@ export default {
         this.getCards()
 
         window.addEventListener('scroll', this.checkBottomScroll);
-    },
+    }
 }
 </script>
 
